@@ -12,7 +12,7 @@ SELECT T1.*,
             ELSE 'Ativo'
        END AS SegVida,
 
-       '2018-06-01' as DtSegmento
+       '{date_end}' as DtSegmento
 
 FROM(   
     SELECT R1.*,
@@ -25,8 +25,8 @@ FROM(
             COUNT(DISTINCT(T1.order_id)) AS QtdPedidos,
             COUNT(T2.product_id) AS QtdProdutos,
             COUNT(DISTINCT(T2.product_id)) AS DistProduto,
-            MIN( CAST(JULIANDAY('2018-06-01') - JULIANDAY(T1.order_approved_at) AS INT)) AS QtdDiaUltimaVenda,
-            MAX( CAST(JULIANDAY('2018-06-01') - JULIANDAY(DtInicio) AS INT) ) AS QtdDiasBase
+            MIN( CAST(JULIANDAY('{date_end}') - JULIANDAY(T1.order_approved_at) AS INT)) AS QtdDiaUltimaVenda,
+            MAX( CAST(JULIANDAY('{date_end}') - JULIANDAY(DtInicio) AS INT) ) AS QtdDiasBase
 
         FROM orders AS T1
 
@@ -43,7 +43,7 @@ FROM(
         ) AS T3
         ON T2.seller_id = T3.seller_id
 
-        WHERE T1.order_approved_at BETWEEN '2017-06-01' AND '2018-06-01'
+        WHERE T1.order_approved_at BETWEEN '{date_init}' AND '{date_end}'
 
         GROUP BY T2.seller_id
     ) AS R1
