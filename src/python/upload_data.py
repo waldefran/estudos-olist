@@ -5,7 +5,7 @@ import sqlalchemy
 str_connection = 'sqlite:///{path}'
 
 #Define BASEDIR como diretorio pai da pasta de dados
-BASE_DIR = os.path.dirname(os.path.dirname( os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname( os.path.abspath(__file__))))
 
 #Define DATA_DIR como diretorio das bases.
 DATA_DIR = os.path.join(BASE_DIR, 'data')
