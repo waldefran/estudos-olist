@@ -5,4 +5,4 @@
 *.gz
 __pycache__
 .vscode
-.zip
+*.zip
